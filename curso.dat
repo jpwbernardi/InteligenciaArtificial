@@ -29,7 +29,6 @@ N5 105 10 20 21 22 23 24 25 26 27 28 29
 37
 CD    1 V1 Padilha
 CD    1 V1 Jacson
-CD    1 M6 Priscila
 Alg   1 V1 Guilherme
 Alg   1 V1 Priscila
 II    2 V1 Raquel
@@ -57,14 +56,7 @@ BD1   2 N4 Denio
 Prog2 1 N4 Lais
 Prog2 1 N4 Priscila
 OC    2 N4 Padilha
-LFA   2 N6 Braulio
-ES2   2 N6 Graziela
-Opt1  2 N8 Pavan
-Red   2 N8 Pavan
-PGP   2 N8 Raquel
-Opt3  2 N10 Bins
-Opt4  2 N10 Guilherme
-TCC2  2 N10 Marco
+
 
 
 
