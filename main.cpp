@@ -15,7 +15,7 @@ using namespace std;
 #define INF 112345678
 #define QTDBILHETES 10
 #define QTDTURMAS 9
-#define TIMEMAX 20
+#define TIMEMAX 10
 #define LIVRE -1
 typedef pair< int , vector<int> > iv;
 
@@ -42,8 +42,10 @@ int profgosta(vector<int> idprof, int turno) {
   for (int i = 0; i < (int) idprof.size(); i++)
     for (int j = 0, id = idprof[i]; j < (int) rejeitados[id].size(); j++)
       if (rejeitados[id][j] == turno) return 0;
-v  return 1;
+  return 1;
 }
+
+int max(int a, int b) { return a > b ? a : b; }
 
 struct individuo {
   int grade[QTDTURMAS][6][5]; //10 periodos, 5 dias, 6 aulas (2 manhã, 2 tarde, 2 noite)
@@ -86,7 +88,7 @@ struct individuo {
     //ignoramos. Mesma coisa com sexta a noite e segunda de manhã, pois
     //são horários sem restrição
     if ((turno / 5 != 5 && turno / 5 != 0) || (turno / 5 == 0 && turno % 5 == 0) || (turno / 5 == 5 && turno % 5 == 4)) return 0;
-    int  m, prof1, prof2;
+    int  m;
     for (int j = 0; j < QTDTURMAS; j++) {
       if (turno / 5 == 0)  m = this->grade[j][5][turno % 5 - 1]; //primeiro horario manhã, verificamos a materia da noite anterior
       else m = this->grade[j][0][turno % 5 + 1]; //ultimo horario da noite, verificamos a primeira materia da manhã seguinte
@@ -199,7 +201,7 @@ void in() {
   while (N--) {
     scanf(" %s %d", nome, &M);
     professores[string(nome)] = cont; prof = cont++;
-    printf("%s: %d", nome, cont - 1);
+    printf("%s %d\n", nome, cont - 1);
     while (M--) { scanf("%d", &tmp); rejeitados[prof].push_back(tmp); }
   }
 
@@ -209,7 +211,7 @@ void in() {
   while (N--) {
     scanf(" %s %d %d", nome, &tmp, &M);
     turmas[string(nome)] = cont; tur = cont++;
-    printf("%s: %d", nome, cont - 1);
+    printf("%s %d\n", nome, cont - 1);
     while (M--) { scanf("%d", &tmp); horarios[tur].push_back(tmp);  }
   }
 
@@ -234,6 +236,7 @@ void in() {
     vector <int> p; p.push_back(prof);
     infdisc[mat].push_back(iv(tur, p));
   }
+  printf("-\n"); //Marca fim da entrada
 }
 
 //A função debug() faz o print de todos as estruturas criadas para
