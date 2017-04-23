@@ -57,7 +57,17 @@ struct individuo {
   individuo () { memset(this->grade, LIVRE, sizeof(this->grade)); vivo = 1; erros = 0; }
   individuo (set<int> m) {
     memset(this->grade, LIVRE, sizeof(this->grade)); vivo = 1; erros = 0;
-    for (auto const& i : m) this->addmateria(i); //Deveria ser mais aleatório
+    int t = m.size(), r;
+    while (t) {
+      //Sorteamos um valor de 0 a t - 1
+      r = rand() % t; t--;
+      //a _t-iesima matéria do set é adicionada, assim garantindo maior
+      //aleatóriedade para os novos individuos
+      for (auto const& i : m) {
+        if (this->materias.find(i) == this->materias.end()) r--;
+        if (r < 0) { this->addmateria(i); break; }
+      }
+    }
   }
 
   //retorna verdadeiro se o professor está livre no horário
@@ -197,11 +207,9 @@ void in() {
   int N, M, cont = 0, tmp, prof, tur, mat, novo, c;
   //Lê os professores
   scanf("%d", &N);
-  printf("%d\n", N);
   while (N--) {
     scanf(" %s %d", nome, &M);
     professores[string(nome)] = cont; prof = cont++;
-    printf("%s %d\n", nome, cont - 1);
     while (M--) { scanf("%d", &tmp); rejeitados[prof].push_back(tmp); }
   }
 
@@ -216,7 +224,7 @@ void in() {
   }
 
   //Lê as disciplinas
-  scanf("%d", &N);
+  scanf("%d", &N); cont = 0;
   while (N--) {
     scanf(" %s %d %s %s", materia, &c, sem, nome);
     if (disciplina.find(string(materia)) == disciplina.end()) {
