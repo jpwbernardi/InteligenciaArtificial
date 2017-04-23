@@ -1,3 +1,7 @@
+/* Trabalho desenvolvido pelos alunos Acácia dos Campos da Terra e João
+   Pedro WInckler Bernardi para disciplina de Inteligência Artificial
+   2017.1 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
