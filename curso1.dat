@@ -1,0 +1,64 @@
+13
+Padilha 0
+Jacson 0
+Guilherme 0
+Raquel 0
+Subs 0
+Priscila 0
+Grazi 0
+Braulio 0
+Marco 0
+Emilio 0
+Andressa 0
+Bins 0
+Denio 0
+10
+V1 1 6 10 12 14 15 17 19
+M3 2 8 0 2 3 4 5 7 8 9
+M5 3 12 1 2 3 4 6 7 8 9 10 13 15 18
+M7 4 10 0 1 2 4 5 6 7 9 10 11
+N2 5 4 21 24 26 29
+N4 6 6 22 23 24 27 28 29
+N6 7 4 22 24 27 29
+N8 8 6 20 21 23 25 26 28
+N10 9 20 21 22 23 24 25 26 27 28 29
+Extra 10 5 10 11 12 13 14
+38
+CirDig 2 V1 Padilha
+CirDig 2 V1 Jacson
+AlgI 2 V1 Guilherme
+AlgI 2 V1 Priscila
+IntInf 2 V1 Raquel
+EDII 2 M3 Subs
+ProgI 2 M3 Priscila
+ProgI 2 M3 Subs
+Org 2 M3 Jacson
+IPC 2 M5 Grazi
+ESI 2 M5 Grazi
+BDII 2 M5 Guilherme
+LFA 2 M5 Braulio
+SO 2 M5 Marco
+CmpDis 2 M7 Emilio
+OptII 2 M7 Padilha
+OptI 2 M7 Andressa
+IA 2 M7 Bins
+TCCI 2 M7 Marco
+EEDI 1 Extra Subs
+EBDI 1 Extra Denio
+EAlg 1 Extra Priscila
+ECirDig 1 Extra Jacson
+EDI 2 N2 Jacson
+EDI 2 N2 Subs
+SD 2 N2 Emilio
+Org 2 N4 Padilha
+BDI 2 N4 Denio
+BDI 2 N4 Subs
+ProgII 2 N4 Subs
+ProgII 2 N4 Priscila
+LFA 2 N6 Braulio
+ESII 2 N6 Grazi
+Redes 2 N8 Pavan
+OptI 2 N8 Pavan
+Planj 2 N8 Raquel
+OptIII 2 N10 Bins
+OptIV 2 N10 Guilherme

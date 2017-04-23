@@ -18,9 +18,10 @@ using namespace std;
 #define TAM 30 //Tamanho da população
 #define INF 112345678
 #define QTDBILHETES 10
-#define QTDTURMAS 9
+#define QTDTURMAS 10
 #define TIMEMAX 10
 #define LIVRE -1
+#define PROB 60
 typedef pair< int , vector<int> > iv;
 
 int fim = 0; // Variavel que controla quantas vezes podemos retentar o processo
@@ -340,7 +341,7 @@ individuo genetico() {
       if (fim != 0) { printf("Não foi possível determinar um horário.\n"); return pop[0]; }
       z = x.cruza(y);
       //Todo indivíduo novo sofre mutação, assim, obrigamos todas as matérias aparecerem.
-      z.muta(100);
+      z.muta(PROB);
       novos[i] = z;
       //Esse if serve apenas para o programa terminar mais rápido, pois
       //o primeiro individuo "aceitavel" produzido é retornado. Caso
