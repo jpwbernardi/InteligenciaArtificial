@@ -21,3 +21,4 @@ Para executar o programa, basta executar:
   ```
   /run.sh <arquivoDeEntrada>
   ```
+A saída poderá ser encontrada no arquivo horarios.csv

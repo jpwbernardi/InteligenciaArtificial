@@ -183,9 +183,7 @@ struct individuo {
   }
 
   //Método de mutação de um indivíduo. Esse inteiro que recebemos é a
-  //probabilidade da mutação e deve estar no intervalo [0, 100]. Na
-  //nossa variação, p sempre é 100%, mas para fins de portabilidade,
-  //deixamos o parametro na função
+  //probabilidade da mutação e deve estar no intervalo [0, 100].
   void muta(int p) {
     if (p < rand() % 100) return;
     //t = quantidade de matérias que p não tem
