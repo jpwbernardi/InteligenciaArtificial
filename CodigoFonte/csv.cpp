@@ -13,7 +13,7 @@ char materias[MAX][MAX1];
 char turnos[MAX][MAX1] = { "Manhã", "Tarde", "Noite" };
 
 int main(void) {
-  int id, i, j, k, N;
+  int id, i, j, k, N, vivo, error;
   char nome[MAX1];
   scanf("%d", &N);
   for (i = 0; i < N; i++) {
@@ -26,9 +26,13 @@ int main(void) {
     scanf("%d", &id);
     strcpy(materias[id], nome);
   }
+  scanf("%d", &vivo);
+  if (!vivo) { printf("Não foi possível gerar uma tabela de horários\n"); return 0; }
+  scanf("%d", &error);
+  printf("Função fitness: %d;\n", error);
   for (i = 0; i < N; i++) {
     scanf("%d", &id);
-    printf("%s;\n", turmas[id]);
+    printf("%s;Segunda;Terça;Quarta;Quinta;Sexta\n", turmas[id]);
     for (j = 0; j < 6; printf("\n"), j++) {
       printf("%s;", j % 2 == 0 ? turnos[j / 2] : "");
       for (k = 0; k < 5; k++) {

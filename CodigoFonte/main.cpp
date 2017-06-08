@@ -140,18 +140,20 @@ struct individuo {
       //matéria para decidir qual é o melhor
       for (int k = 0; k < (int) horarios[periodo].size() && count; k++) {
         turno = horarios[periodo][k];
+        //printf("%d\n", count);
         i = turno / 5; j = turno % 5;
         //Se o professor já está dando aula nesse horário em outra
         //turma, esse horário não pode ser escolhido
         if (!this->proflivre(prof, turno)) continue;
         //Se o horário está livre (não tem outra matéria sendo ofertada
         //nesse horário) && é um horário bom para o professor, adicionamos na grade
-        if (this->grade[periodo][i][j] == LIVRE && profgosta(prof, turno)) {
-          this->grade[periodo][i][j] = m; count--;
+        if (this->grade[periodo][i][j] == LIVRE && !this->restrito(prof, turno)) {
+          if (profgosta(prof, turno)) { this->grade[periodo][i][j] = m; count--; }
           //Se o professor não gosta do horário, mas não existe
           //restrição legal, guardamos esse horário, caso seja
           //necessário
-        } else if (!this->restrito(prof, turno) && p < count) possivel[p++] = turno;
+          else  possivel[p++] = turno;
+        }
       }
       //Se a quantidade de horários que falta colocar é menor do que
       //temos disponível, não é possivel colocar a matéria na grade. O
@@ -159,7 +161,7 @@ struct individuo {
       if (count > p) this->vivo = 0;
       //Caso seja necessário, usamos os horários que reservamos (que os
       //professores não gostam) e marcamos um erro
-      else while (p-- > 0 && count) { this->grade[periodo][possivel[p] / 5] [possivel[p] % 5] = m; this->erros++; count--; }
+      else while (p-- > 0 && count) { this->grade[periodo][possivel[p] / 5][possivel[p] % 5] = m; this->erros++; count--; }
     }
   }
 
@@ -185,19 +187,24 @@ struct individuo {
   //Método de mutação de um indivíduo. Esse inteiro que recebemos é a
   //probabilidade da mutação e deve estar no intervalo [0, 100].
   void muta(int p) {
-    if (p < rand() % 100) return;
+    int addm = 0, aleatorio = 0;
+    if (p >= rand() % 100) addm = 1; // Não adiciona matéria
     //t = quantidade de matérias que p não tem
-    int t = disciplina.size() - this->materias.size();
-    if (t == 0) return;
-    //Realiza-se um sorteio, a dentre as t opções e a matéria sorteada
-    //será adicionada
-    t = rand() % t;
-    for (auto const& i: disciplina) {
-      if (this->materias.find(i.second) == this->materias.end()) {
-        if (t--) continue;
-        this->addmateria(i.second); break;
+    if (1 >= rand() % 20) aleatorio = 1;//10% de chance
+    if (addm) {
+      int t = disciplina.size() - this->materias.size();
+      if (t == 0) return;
+      //Realiza-se um sorteio, a dentre as t opções e a matéria sorteada
+      //será adicionada
+      t = rand() % t;
+      for (auto const& i: disciplina) {
+        if (this->materias.find(i.second) == this->materias.end()) {
+          if (t--) continue;
+          this->addmateria(i.second); break;
+        }
       }
     }
+    if (aleatorio) *this = individuo(this->materias);
   }
 };
 
@@ -309,7 +316,9 @@ individuo selecao(individuo pop[TAM]) {
 
 //Realiza o print do indivíduo escolhido
 void print(individuo p) {
+  printf("%d\n", p.vivo);
   if (!p.vivo) { printf("Não foi possível gerar um indivíduo\n"); return; }
+  printf("%d\n", p.erros);
   for (int i = 0; i < QTDTURMAS; i++) {
     printf("%d\n", i);
     for (int j = 0; j < 6; j++,printf("\n"))
