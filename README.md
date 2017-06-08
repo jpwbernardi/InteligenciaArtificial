@@ -21,7 +21,7 @@ de um curso, dada uma determinada entrada. Informações mais específicas estã
 
 # Execução
   ```
-  > /run.sh <arquivoDeEntrada>
+  > ./run.sh <arquivoDeEntrada>
   ```
 
 # Entrada
