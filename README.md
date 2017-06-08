@@ -23,6 +23,7 @@ de um curso, dada uma determinada entrada. Informações mais específicas estã
   ```
   > ./run.sh <arquivoDeEntrada>
   ```
+Arquivos de exemplo podem ser encontrados em 'Entradas/'
 
 # Entrada
   A entrada consiste de uma sequência de dados relacionados à professores, disciplinas, preferências de horários. Os dados exigidos são:
